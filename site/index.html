@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Random PluralSight Course</title>
+    <script src="index.js"></script>
+    <script type="text/javascript">
+      const urlPrefix = 'https://app.pluralsight.com/library/courses/'
+      function getNewCourse () {
+        const courseId = Math.floor(Math.random() * pluralSightCourseMaxIndex + 1)
+        console.debug(`Selecting course with id='${courseId}'`)
+        fetch(courseId + '.json')
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(courseJson) {
+            console.debug(courseJson)
+            document.getElementById('course-title').innerText = courseJson.title
+            document.getElementById('course-blurb').innerText = courseJson.description
+            document.getElementById('course-link').innerText = 'View course on PluralSight'
+            document.getElementById('course-link').href = urlPrefix + courseJson.prodId
+          })
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="getNewCourse()">Get new course</button>
+    <h2 id="course-title">Click button</h2>
+    <p id="course-blurb"></p>
+    <a href="#" id="course-link"></a>
+  </body>
+</html>

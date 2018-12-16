@@ -1,6 +1,6 @@
 I got tired of having to pick a PluralSight course. Instead, I want to be given a random course to challenge me to pick something outside what I normally would look at.
 
-Currently it's a command line app but in the future, I plan to make it into a webpage.
+You can use this tool from the command line, or it's also a hosted web page.
 
 ## Running
 
@@ -15,9 +15,19 @@ Currently it's a command line app but in the future, I plan to make it into a we
   1. clone this repo
   1. download the course data
       ```bash
-      bash get-dataset.sh
+      ./get-data/get-dataset.sh
       ```
-  1. pick a random course
+  1. pick a random course from the command line
       ```bash
-      node pick-random-course.js
+      ./get-data/pick-random-course.js
       ```
+  1. build the web page
+      ```bash
+      ./build.sh
+      ```
+  1. now you can deploy the web page. It's just a static site so do something like
+      ```bash
+      cd dist/
+      aws s3 sync --acl=public-read . s3://some-bucket
+      ```
+
