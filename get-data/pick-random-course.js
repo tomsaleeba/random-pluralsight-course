@@ -4,7 +4,8 @@ const fs = require('fs')
 const courseDataFilename = 'all-courses.json'
 const urlPrefix = 'https://app.pluralsight.com/library/courses/'
 
-const courseData = JSON.parse(fs.readFileSync(courseDataFilename))
+const rawCourseData = JSON.parse(fs.readFileSync(courseDataFilename))
+const courseData = rawCourseData.filter(e => e.description) // ignore anything without a desc
 const courseCount = courseData.length
 const randomCourseIndex = Math.floor(Math.random() * courseCount)
 const pickedCourse = courseData[randomCourseIndex]

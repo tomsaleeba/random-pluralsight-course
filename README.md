@@ -13,9 +13,10 @@ You can use this tool from the command line, or it's also a hosted web page.
 ### Steps
 
   1. clone this repo
-  1. download the course data
+  1. there are no deps to install so we'll get straight into it
+  1. unzip the data
       ```bash
-      ./get-data/get-dataset.sh
+      gunzip get-data/all-courses.json.gz
       ```
   1. pick a random course from the command line
       ```bash
@@ -31,3 +32,18 @@ You can use this tool from the command line, or it's also a hosted web page.
       aws s3 sync --acl=public-read . s3://some-bucket
       ```
 
+### Refreshing data
+
+There is already data in this repo so you can use that. If you want to pull the latest data, run this command:
+
+```bash
+./get-data/get-dataset.sh
+```
+
+If you're going to add the data to the repo, you can gzip it first with:
+
+```bash
+cd get-data/
+gzip all-courses.json
+cd ..
+```
